@@ -29,4 +29,4 @@ Once downloaded, open MATLAB and load the file "Analysis2.mat" inside the "mat_a
 ・MATLAB R2022b (or later)
 
 # Citation
-・Coming soon
+・Takamidoa, R., Suzukia, C., & Nakamoto, H. (2025). Personalized Motion Guidance Framework for Athlete-Centric Coaching. arXiv preprint arXiv:2510.10496.
