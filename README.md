@@ -1,4 +1,4 @@
-## Personalized Motion Guidance Framework for Athlete-Centric Coaching
+## Project Title: Personalized Motion Guidance Framework for Athlete-Centric Coaching
 # Overview
 This repository provides the source code, anonymized dataset, and analysis scripts for the Personalized Motion Guidance Framework (PMGF), a generative AI-based framework for producing individualized motion guidance for sports coaching.
 
