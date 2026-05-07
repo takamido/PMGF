@@ -12,6 +12,56 @@ In this study, PMGF was developed and evaluated using baseball pitching motion d
 
 The validation analyses showed that PMGF can generate smooth transitions between individual pitching motions and produce biomechanically plausible refinements associated with higher ball velocity. These outputs are intended to support personalized, athlete-centric coaching practices, especially by providing individualized visual feedback for observational learning.
 
+## Dataset Information
+
+This repository contains the anonymized and standardized dataset used to develop and evaluate the Personalized Motion Guidance Framework (PMGF). The dataset consists of baseball pitching motion data from 51 pitchers. Each pitcher was assigned an anonymized ID from `P_01` to `P_051`.
+
+The input dataset is stored in the following directory:
+
+```text
+./Transformer_VAE/data/input_dataset/
+```
+
+Under this directory, each pitcher has an individual folder:
+
+```text
+./Transformer_VAE/data/input_dataset/P_01/
+./Transformer_VAE/data/input_dataset/P_02/
+...
+./Transformer_VAE/data/input_dataset/P_051/
+```
+
+Each pitcher folder contains five `.mat` files corresponding to five pitching trials:
+
+```text
+001.mat
+002.mat
+003.mat
+004.mat
+005.mat
+```
+
+Each `.mat` file contains the following variables:
+
+* `X`: standardized input motion data with the shape `101 × 15 × 4`
+
+  * `101`: normalized time points
+  * `15`: joint positions / anatomical landmarks
+  * `4`: feature dimensions
+* `Y`: standardized ball velocity data for the corresponding pitch
+
+All `X` and `Y` values are standardized. The information required to reverse the standardization of the motion-position data is provided in the following files:
+
+```text
+./Transformer_VAE/data/mu_pos.csv
+./Transformer_VAE/data/sigma_pos.csv
+```
+
+Here, `mu_pos.csv` contains the mean values used for standardization, and `sigma_pos.csv` contains the corresponding standard deviation values.
+
+The `.mat` files in this repository are data files, not source code. They are used as input data for the PMGF model training, motion generation, and subsequent analyses. The source code for loading these files, training the Transformer-VAE, generating motion guidance, and conducting analyses is provided separately in the program files and MATLAB scripts.
+
+
 # Repository Structure
 PMGF/  
 ├── Transformer_VAE &nbsp;&nbsp;&nbsp; #Main programs of the PMGF  
