@@ -284,8 +284,32 @@ The script calculates eight biomechanical features for the original and generate
 The `.mat` files in this repository are data files, not source code. The executable source code is provided as `main_program.ipynb` for the Python/Google Colab workflow and `Analysis2.m` for the MATLAB biomechanical analysis.
 
 # Requirements
-・Google Colab (Python environment)  
-・MATLAB R2022b (or later)
+## Requirements
+
+The Python-based PMGF workflow is designed to run in Google Colab with GPU acceleration. The MATLAB-based biomechanical and statistical analysis was tested using MATLAB R2022b.
+
+### Python / Google Colab environment
+
+- Google Colab
+- GPU runtime recommended
+- Python 3.x
+- PyTorch
+- NumPy
+- SciPy
+- pandas
+- scikit-learn
+- matplotlib
+- tqdm
+- h5py
+- scipy.io, for loading `.mat` files
+
+The main Python notebook is intended to be executed in Google Colab. Most required packages are preinstalled in the Colab environment. If any package is missing, please install it within the notebook using `pip`.
+
+### MATLAB environment
+
+- MATLAB R2022b or later
+
+The MATLAB script `Analysis2.m` was tested in MATLAB R2022b. It uses standard MATLAB functions for loading data, matrix operations, statistical testing, and result output. If optional video generation is enabled by setting `movie_on = 1`, additional video-writing functionality in MATLAB is used.
 
 # Citations
 ・Takamidoa, R., Suzukia, C., & Nakamoto, H. (2025). Personalized Motion Guidance Framework for Athlete-Centric Coaching. arXiv preprint arXiv:2510.10496.
