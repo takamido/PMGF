@@ -377,4 +377,4 @@ For biomechanical feature-oriented optimization, eight biomechanical features ar
 The original and generated motions are compared using paired t-tests. Cohen’s d is calculated as the effect size, and the Holm–Bonferroni method is applied to correct for multiple comparisons.
 
 # Citations
-・Takamidoa, R., Suzukia, C., & Nakamoto, H. (2025). Personalized Motion Guidance Framework for Athlete-Centric Coaching. arXiv preprint arXiv:2510.10496.
+・Takamido, R., Suzuki, C., & Nakamoto, H. (2025). Personalized Motion Guidance Framework for Athlete-Centric Coaching. arXiv preprint arXiv:2510.10496.
