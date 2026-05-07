@@ -1,7 +1,16 @@
 ## Personalized Motion Guidance Framework for Athlete-Centric Coaching
 # Overview
-This repository provides the implementation of a personalized motion generation and feedback system designed to support athlete-centric coaching.
-Our method combines Variational Autoencoder (VAE) and Transformer-based motion generation to produce individualized guidance for athletes based on their movement data.
+This repository provides the source code, anonymized dataset, and analysis scripts for the Personalized Motion Guidance Framework (PMGF), a generative AI-based framework for producing individualized motion guidance for sports coaching.
+
+PMGF is designed to bridge the gap between group-level biomechanical findings and athlete-specific coaching needs. The framework uses a Transformer-based Variational Autoencoder (Transformer-VAE) to learn latent representations of athletic motion sequences. By manipulating these latent representations, PMGF generates personalized guidance motions that preserve each athlete’s original movement characteristics while shifting the motion toward a target pattern or toward biomechanically favorable features.
+
+In this study, PMGF was developed and evaluated using baseball pitching motion data from 51 pitchers. The framework implements two main latent-space manipulation strategies:
+
+(1) Motion style transfer between individuals, which generates smooth intermediate motions between a learner’s original motion and a target motion, such as an expert athlete’s motion.
+
+(2) Biomechanical feature-oriented optimization, which shifts an athlete’s motion in the latent space to enhance key pitching-related features, such as stride length, knee extension, trunk tilt, and hip–shoulder delay.
+
+The validation analyses showed that PMGF can generate smooth transitions between individual pitching motions and produce biomechanically plausible refinements associated with higher ball velocity. These outputs are intended to support personalized, athlete-centric coaching practices, especially by providing individualized visual feedback for observational learning.
 
 # Repository Structure
 PMGF/  
