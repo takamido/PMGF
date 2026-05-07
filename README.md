@@ -378,3 +378,19 @@ The original and generated motions are compared using paired t-tests. Cohen’s 
 
 # Citations
 ・Takamido, R., Suzuki, C., & Nakamoto, H. (2025). Personalized Motion Guidance Framework for Athlete-Centric Coaching. arXiv preprint arXiv:2510.10496.
+
+## License and Contribution Guidelines
+
+### License
+
+This repository is provided for academic and research purposes. Please cite the related paper if you use the source code, dataset, or analysis scripts in your research.
+
+The anonymized dataset is provided only for academic and non-commercial research use. Users should not attempt to identify individual participants from the dataset or redistribute the dataset separately from this repository.
+
+The license for the source code and analysis scripts will be specified in a separate `LICENSE` file.
+
+### Contribution Guidelines
+
+This repository is primarily intended to support reproducibility of the associated research paper. At this stage, we do not actively solicit external contributions.
+
+If you find an error in the code, dataset description, or documentation, please contact the corresponding author or open an issue on GitHub.
