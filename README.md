@@ -311,5 +311,70 @@ The main Python notebook is intended to be executed in Google Colab. Most requir
 
 The MATLAB script `Analysis2.m` was tested in MATLAB R2022b. It uses standard MATLAB functions for data loading, matrix operations, biomechanical feature calculation, paired t-tests, Holm–Bonferroni correction, effect-size calculation, and result output. If optional video generation is enabled by setting `movie_on = 1`, MATLAB video-writing functionality is also used.
 
+## Methodology
+
+This project implements the Personalized Motion Guidance Framework (PMGF), a generative AI-based framework for producing individualized motion guidance from baseball pitching motion data. The overall workflow consists of data preprocessing, Transformer-VAE model training, latent-space manipulation, motion generation, and biomechanical/statistical evaluation.
+
+### 1. Data preprocessing
+
+The input dataset consists of standardized baseball pitching motion data from 51 pitchers. For each pitcher, five pitching trials are included. Each trial is stored as a `.mat` file containing standardized motion data (`X`) and standardized ball velocity data (`Y`).
+
+The motion data were prepared using the following preprocessing steps:
+
+1. Three-dimensional joint position data were extracted from pitching motions.
+2. Ball release timing was identified.
+3. A fixed-duration motion segment around ball release was extracted.
+4. Each motion sequence was temporally normalized to 101 frames.
+5. Joint position data and ball velocity data were standardized across the dataset.
+
+The standardized input motion data have the shape `101 × 15 × 4`, corresponding to normalized time points, anatomical landmarks, and feature dimensions. The four feature dimensions consist of three-dimensional joint positions and resultant velocity.
+
+### 2. Transformer-VAE model training
+
+A Transformer-based Variational Autoencoder (Transformer-VAE) was used to learn latent representations of pitching motion sequences. The encoder maps each motion sequence into a latent representation, and the decoder reconstructs the motion sequence from the latent vector.
+
+The model was trained to minimize reconstruction error while learning a smooth latent space suitable for motion generation and manipulation. A motion-speed penalty was also included to improve the fidelity of reconstructed high-speed pitching motions.
+
+A pretrained model is included in this repository, so users can reproduce the analyses without retraining the model. The model can also be retrained by running the training cells in `main_program.ipynb`.
+
+### 3. Latent-space manipulation
+
+After training, each pitching motion is represented as a point in the learned latent space. PMGF generates personalized guidance motions by manipulating these latent representations.
+
+Two manipulation strategies are implemented:
+
+#### Motion style transfer between individuals
+
+The first strategy generates intermediate motions between a source pitcher and a target pitcher by interpolating between their latent representations. This produces smooth transitions from the source motion toward the target motion while preserving characteristics of the source pitcher.
+
+#### Biomechanical feature-oriented optimization
+
+The second strategy shifts a pitcher’s latent representation in a direction that improves biomechanical features associated with pitching performance. An Evolution Strategy algorithm is used to search for an optimized direction in the latent space. The optimized latent vector is then decoded into a generated motion pattern.
+
+### 4. Motion generation and reconstruction
+
+Manipulated latent vectors are decoded by the Transformer-VAE decoder to generate reconstructed, transferred, or optimized pitching motions. These generated motions are saved as `.csv` files and can be used for visualization and biomechanical analysis.
+
+### 5. Evaluation
+
+The generated motions are evaluated using both machine-learning-based and biomechanical analyses.
+
+For motion reconstruction, reconstruction accuracy is evaluated using root mean squared error (RMSE) between the original and reconstructed joint positions.
+
+For motion style transfer, Dynamic Time Warping (DTW) is used to quantify whether the generated motions smoothly transition from the source motion toward the target motion.
+
+For biomechanical feature-oriented optimization, eight biomechanical features are calculated from the original and generated motions:
+
+1. Shoulder-joint movement
+2. Shoulder abduction
+3. Forward trunk tilt at release
+4. Lateral trunk tilt at release
+5. Maximum trunk rotational velocity
+6. Hip–shoulder delay
+7. Lead knee flexion / knee extension angle
+8. Stride length
+
+The original and generated motions are compared using paired t-tests. Cohen’s d is calculated as the effect size, and the Holm–Bonferroni method is applied to correct for multiple comparisons.
+
 # Citations
 ・Takamidoa, R., Suzukia, C., & Nakamoto, H. (2025). Personalized Motion Guidance Framework for Athlete-Centric Coaching. arXiv preprint arXiv:2510.10496.
