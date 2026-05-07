@@ -207,27 +207,81 @@ Second, `Analysis2.m` is used to load the original and generated/optimized motio
 
 In this repository, `.mat` files are used as data files, not as source code. The executable source code is provided in human- and machine-readable formats, including `.ipynb` for the Python/Google Colab workflow and `.m` for the MATLAB biomechanical analysis.
 
+## Usage Instructions
 
-# Repository Structure
-PMGF/  
-├── Transformer_VAE &nbsp;&nbsp;&nbsp; #Main programs of the PMGF  
-├── mat_analysis2 &nbsp;&nbsp;&nbsp; # Analysis code of matllab for the analysis2  
-└── README.md &nbsp;&nbsp;&nbsp; # This file  
+This project is designed to be easily executed in Google Colab. The main PMGF procedures, including dataset loading, Transformer-VAE model execution, motion reconstruction, latent-space manipulation, and motion generation, can be reproduced by mounting the project folder and running the main notebook.
 
-# Installation
-This project is designed to be easily executed in Google Colab.
-All experiments and demonstrations can be reproduced by mounting the project folder and running the main notebook.
-First, open a new Google Colab notebook and make sure that the runtime type is set to GPU
-(Runtime → Change runtime type → Hardware accelerator → GPU).
-Then, mount the project directory named Transformer_VAE into the Colab environment.
-If you store this folder on your Google Drive, the following step will make it accessible inside Colab.
-Once the folder is mounted, navigate to the project path and execute the main notebook to start the program ("main_program.ipynb").
+### Running the Python/Google Colab program
 
-If you wish to reproduce the statistical analysis performed in Analysis 2 of the paper,
-please follow the steps below using your local MATLAB environment.
-Download the folder named "mat_analysis2" from this repository to your local machine.
-This folder contains the MATLAB scripts and data required for the secondary analysis.
-Once downloaded, open MATLAB and load the file "Analysis2.mat" inside the "mat_analysis2" directory.
+First, open Google Colab and make sure that the runtime type is set to GPU:
+
+```text
+Runtime → Change runtime type → Hardware accelerator → GPU
+```
+
+Then, mount your Google Drive in the Colab environment. If you store the `Transformer_VAE` folder on your Google Drive, it will become accessible from Colab after mounting the drive.
+
+The main notebook is located at:
+
+```text
+./Transformer_VAE/program/main_program.ipynb
+```
+
+After mounting Google Drive, navigate to the project directory in Colab and run `main_program.ipynb` from the beginning. The notebook loads the standardized pitching motion dataset from:
+
+```text
+./Transformer_VAE/data/input_dataset/
+```
+
+The dataset is organized by anonymized pitcher IDs from `P_01` to `P_051`. Each pitcher folder contains five `.mat` files, `001.mat` to `005.mat`, corresponding to five pitching trials. Each `.mat` file contains:
+
+* `X`: standardized input motion data with the shape `101 × 15 × 4`
+* `Y`: standardized ball velocity data for the corresponding pitch
+
+The four feature dimensions in `X` correspond to three-dimensional joint positions and resultant velocity. The files `mu_pos.csv` and `sigma_pos.csv` are used for inverse standardization of the joint position data:
+
+```text
+./Transformer_VAE/data/mu_pos.csv
+./Transformer_VAE/data/sigma_pos.csv
+```
+
+A pretrained model is included in this repository so that users can reproduce the analyses without training the Transformer-VAE from scratch. If users wish to retrain the model, they can run the training cells in `main_program.ipynb`.
+
+The notebook generates reconstructed or optimized motion data and saves the outputs as `.csv` files. These generated files are used in the MATLAB analysis described below.
+
+### Running the MATLAB analysis
+
+If you wish to reproduce the statistical analysis performed in Analysis 2 of the paper, please use a local MATLAB environment.
+
+First, download the folder named `mat_analysis2` from this repository to your local machine. This folder contains the MATLAB script, required functions, and data files for the biomechanical and statistical analyses.
+
+The main MATLAB script is:
+
+```text
+./mat_analysis2/Analysis2.m
+```
+
+Open MATLAB, set the current folder to the `mat_analysis2` directory, and run:
+
+```matlab
+Analysis2
+```
+
+The script automatically adds the required function directory:
+
+```text
+./mat_analysis2/functions/
+```
+
+It then loads the original motion data, reconstructed or optimized motion data, inverse-standardization files, and target pitcher indices from the `data` directory. Specifically, it uses files stored under:
+
+```text
+./mat_analysis2/data/
+```
+
+The script calculates eight biomechanical features for the original and generated/optimized motions, performs paired t-tests, calculates Cohen’s d, applies the Holm–Bonferroni correction, and prints the statistical results.
+
+The `.mat` files in this repository are data files, not source code. The executable source code is provided as `main_program.ipynb` for the Python/Google Colab workflow and `Analysis2.m` for the MATLAB biomechanical analysis.
 
 # Requirements
 ・Google Colab (Python environment)  
