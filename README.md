@@ -1,5 +1,5 @@
-## Project Title: Personalized Motion Guidance Framework for Athlete-Centric Coaching
-# Overview
+# Personalized Motion Guidance Framework for Athlete-Centric Coaching
+## Overview
 This repository provides the source code, anonymized dataset, and analysis scripts for the Personalized Motion Guidance Framework (PMGF), a generative AI-based framework for producing individualized motion guidance for sports coaching.
 
 PMGF is designed to bridge the gap between group-level biomechanical findings and athlete-specific coaching needs. The framework uses a Transformer-based Variational Autoencoder (Transformer-VAE) to learn latent representations of athletic motion sequences. By manipulating these latent representations, PMGF generates personalized guidance motions that preserve each athlete’s original movement characteristics while shifting the motion toward a target pattern or toward biomechanically favorable features.
@@ -377,7 +377,7 @@ For biomechanical feature-oriented optimization, eight biomechanical features ar
 The original and generated motions are compared using paired t-tests. Cohen’s d is calculated as the effect size, and the Holm–Bonferroni method is applied to correct for multiple comparisons.
 
 # Citations
-・Takamido, R., Suzuki, C., & Nakamoto, H. (2025). Personalized Motion Guidance Framework for Athlete-Centric Coaching. arXiv preprint arXiv:2510.10496.
+-Takamido, R., Suzuki, C., & Nakamoto, H. (2025). Personalized Motion Guidance Framework for Athlete-Centric Coaching. arXiv preprint arXiv:2510.10496.
 
 ## License and Contribution Guidelines
 
@@ -385,9 +385,9 @@ The original and generated motions are compared using paired t-tests. Cohen’s 
 
 This repository is provided for academic and research purposes. Please cite the related paper if you use the source code, dataset, or analysis scripts in your research.
 
-The anonymized dataset is provided only for academic and non-commercial research use. Users should not attempt to identify individual participants from the dataset or redistribute the dataset separately from this repository.
+The source code and analysis scripts are provided for academic and research use. For permission regarding reuse beyond academic research, please contact the corresponding author.
 
-The license for the source code and analysis scripts will be specified in a separate `LICENSE` file.
+The anonymized dataset is provided only for academic and non-commercial research use. Users should not attempt to identify individual participants from the dataset or redistribute the dataset separately from this repository.
 
 ### Contribution Guidelines
 
