@@ -47,7 +47,7 @@ Each `.mat` file contains the following variables:
 
   * `101`: normalized time points
   * `15`: joint positions / anatomical landmarks
-  * `4`: feature dimensions
+  * `4`: feature dimensions (three-dimensional joint positions and resultant velocity)
 * `Y`: standardized ball velocity data for the corresponding pitch
 
 All `X` and `Y` values are standardized. The information required to reverse the standardization of the motion-position data is provided in the following files:
@@ -60,7 +60,6 @@ All `X` and `Y` values are standardized. The information required to reverse the
 Here, `mu_pos.csv` contains the mean values used for standardization, and `sigma_pos.csv` contains the corresponding standard deviation values.
 
 The `.mat` files in this repository are data files, not source code. They are used as input data for the PMGF model training, motion generation, and subsequent analyses. The source code for loading these files, training the Transformer-VAE, generating motion guidance, and conducting analyses is provided separately in the program files and MATLAB scripts.
-
 
 # Repository Structure
 PMGF/  
